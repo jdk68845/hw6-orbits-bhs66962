@@ -69,3 +69,4 @@ plot(dat(:,2),dat(:,3),col)
 xlabel('x (m)'), ylabel('y (m)')
 hold on
 disp('The midpoint method underestimates the projectile slightly. The Runge-Kutta and adaptive Runge-Kutta methods seemed to plot nearly the same curve.')
+legend('Midpoint','Runge-Kutta','Adaptive RK','Location','best')

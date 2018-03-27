@@ -9,13 +9,14 @@ function deriv = derivsProj(s,t,params)
 
 %Extract parameters from input
 
-
+grav = [params(1) params(2)];
+dragconst = params(3);
 % Compute acceleration
 x = [s(1) s(2)];  % Unravel the vector s into position and velocity
 v = [s(3) s(4)];
 
 % Calculate derivatives
-
+accel = grav-dragconst*v*norm(v);
 
 % Return derivatives [dr(1)/dt dr(2)/dt dv(1)/dt dv(2)/dt]
 deriv = [v(1) v(2) accel(1) accel(2)];

@@ -36,11 +36,13 @@ while(x(2)>=0 & counter<10000)         % repeat until the projectile hits the gr
         time = time + tau;
     elseif(method==2)  % Runge Kutta
         % Call rk4
+        state = rk4(state,time,tau,@derivsProj,[grav(1) grav(2) dragconst]);
         x = [state(1) state(2)];   % 4th order Runge-Kutta
         v = [state(3) state(4)];
         time = time + tau; 
     else               % Adaptive Runge Kutta
         % Call rka
+        [state,time,tau] = rka(state,time,tau,adaptErr,@derivsProj,[grav(1) grav(2) dragconst]);
         x = [state(1) state(2)];   % 4th order Runge-Kutta
         v = [state(3) state(4)];
     end
@@ -66,3 +68,4 @@ subplot(212)
 plot(dat(:,2),dat(:,3),col)
 xlabel('x (m)'), ylabel('y (m)')
 hold on
+disp('The midpoint method underestimates the projectile slightly. The Runge-Kutta and adaptive Runge-Kutta methods seemed to plot nearly the same curve.')
